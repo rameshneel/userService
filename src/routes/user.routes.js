@@ -1,8 +1,14 @@
 import express from "express";
-import { getProfile, getDashboard } from "../controllers/user.controller.js";
+import {
+  getProfile,
+  getDashboard,
+  createProfile,
+} from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
-const router = express.Router();
+export const router = express.Router();
+//create
+router.post("/create-profile", createProfile);
 
 router.get("/profile", verifyJWT, getProfile);
 router.get("/dashboard", verifyJWT, getDashboard);

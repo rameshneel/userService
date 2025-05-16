@@ -1,4 +1,4 @@
-import { ApiError } from "../../../authService/src/utils/ApiError";
+import { ApiError } from "../../../authService/src/utils/ApiError.js";
 
 function errorHandler(err, req, res, next) {
   if (err instanceof ApiError) {

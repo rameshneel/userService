@@ -17,11 +17,11 @@ const CompanyDetails = sequelize.define(
         key: "id",
       },
     },
-    department: {
-      type: DataTypes.STRING,
+    role: {
+      type: DataTypes.ENUM("superAdmin", "admin", "manager"),
       allowNull: true,
     },
-    companyName: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },

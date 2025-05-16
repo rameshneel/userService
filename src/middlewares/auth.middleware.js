@@ -2,6 +2,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken";
 import { User } from "../models/index.model.js";
+import axios from "axios";
 
 export const verifyJWT = asyncHandler(async (req, _, next) => {
   try {
@@ -12,18 +13,18 @@ export const verifyJWT = asyncHandler(async (req, _, next) => {
       throw new ApiError(401, "Unauthorized request");
     }
 
-    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-
-    const user = await User.findById(decodedToken?._id).select(
-      "-password -refreshToken"
+    const { data } = await axios.post(
+      `${process.env.AUTH_SERVICE_URL}/auth/verify-token`,
+      { token }
     );
 
-    if (!user) {
-      console.error("JWT Verification Error:");
-      throw new ApiError(401, "Invalid Access Token");
+    const user = data?.message;
+
+    if (!user?.valid) {
+      throw new ApiError(400, "token not valid");
     }
 
-    req.user = user;
+    req.user = user.user;
     next();
   } catch (error) {
     throw new ApiError(401, error?.message || "Invalid access token");

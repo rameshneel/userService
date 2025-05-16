@@ -31,11 +31,7 @@ const User = sequelize.define(
         "vendor",
         "customer"
       ),
-      allowNull: false,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {

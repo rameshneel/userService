@@ -17,6 +17,10 @@ const CustomerDetails = sequelize.define(
         key: "id",
       },
     },
+    fullName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     orderHistory: {
       type: DataTypes.JSON,
       allowNull: true,

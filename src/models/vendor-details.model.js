@@ -17,20 +17,27 @@ const VendorDetails = sequelize.define(
         key: "id",
       },
     },
-    vendorId: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
-    contractDetails: {
-      type: DataTypes.TEXT,
-      allowNull: true,
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    companyName: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
     tableName: "vendor_details",
     timestamps: true,
-    indexes: [{ fields: ["userId"] }, { fields: ["vendorId"] }],
+    indexes: [{ fields: ["userId"] }, { fields: ["companyName"] }],
   }
 );
 

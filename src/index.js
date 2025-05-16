@@ -8,18 +8,18 @@ dotenv.config({
   path: "./.env",
 });
 
-// Initialize RabbitMQ and consumers
-async function startApp() {
-  try {
-    await initializeEvents();
-    logger.info("Events initialized in AuthService");
-  } catch (error) {
-    logger.error("Failed to start AuthService:", error);
-    process.exit(1);
-  }
-}
+// // Initialize RabbitMQ and consumers
+// async function startApp() {
+//   try {
+//     await initializeEvents();
+//     logger.info("Events initialized in AuthService");
+//   } catch (error) {
+//     logger.error("Failed to start AuthService:", error);
+//     process.exit(1);
+//   }
+// }
 
-startApp();
+// startApp();
 
 // Sync without dropping tables (no data loss)
 sequelize
